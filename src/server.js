@@ -1,10 +1,16 @@
 const express = require('express');
+const mongoose = require('mongoose')
+const routes = require('./routes');
 
 const server = express();
 
-server.get('/', (request, response) => {
-    
-    return response.send({message : `Hello Oi ${request.query.name}`})
-})
+mongoose.connect('mongodb+srv://omnistack:omnistack@semana-omnistack-s3jbg.mongodb.net/omnistack8?retryWrites=true&w=majority', {
+    useNewUrlParser: true
+});
+
+
+server.use(express.json());
+server.use(routes);
+
 
 server.listen(3333);
